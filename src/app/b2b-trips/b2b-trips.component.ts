@@ -181,4 +181,5 @@ export class B2bTripsComponent implements OnInit {
       );
     }
   }
+ 
 }

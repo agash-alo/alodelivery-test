@@ -66,6 +66,8 @@ export class DashboardComponent implements OnInit {
   s2bnew: any;
   b2cactive: any;
   b2cnew: any;
+  b2cPending:any='';
+  b2ccompleted:any='';
   type:any;
   value: undefined;
   offset = 0;
@@ -237,8 +239,11 @@ export class DashboardComponent implements OnInit {
     this.type = "consumer";
     this.apiService.b2ctripdata(this.type)
       .then((res) => {
+        console.log(res?.data)
         this.b2cactive = res?.data?.activeor;
         this.b2cnew = res?.data?.newor;
+        this.b2cPending =res?.data?.pending;
+        this.b2ccompleted = res?.data?.delivered;
         if (res == 200) {
         }
       })

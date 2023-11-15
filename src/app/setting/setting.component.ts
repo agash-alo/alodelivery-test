@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiServiceService } from '../service/api-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-setting',
@@ -30,7 +31,7 @@ export class SettingComponent implements OnInit {
   searchLoad:boolean = false;
   constructor(
     private apiService: ApiServiceService,
-    private dialog: MatDialog
+    private dialog: MatDialog,private toastr:ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -106,6 +107,7 @@ export class SettingComponent implements OnInit {
           this.apiService.createBanner(payload).subscribe((res) => {
            
             this.getBannerList(type);
+            this.toastr.success(res?.message);
             this.searchLoad=false;
            
           });
@@ -139,6 +141,7 @@ export class SettingComponent implements OnInit {
             status: 'active',
           };
           this.apiService.updateBanner(payload,id).subscribe((res) => {
+            this.toastr.success(res?.message);
             this.getBannerList(type);
             this.searchLoad=false;
           });
@@ -161,6 +164,7 @@ export class SettingComponent implements OnInit {
       .getBannerList(type)
       .then(
         (res) => {
+          
           if (type == 'mobile') {
             this.bannerConsumerList = res?.data?.data ? res.data.data : [];
             if (this.bannerConsumerList?.length >= 3) {
@@ -203,6 +207,7 @@ export class SettingComponent implements OnInit {
             console.log('this.advertiseList', this.advertiseList);
           
           }
+        
         },
         (err: any) => {
           if (type == 'web') {
@@ -224,6 +229,7 @@ export class SettingComponent implements OnInit {
         this.apiService.deleteBanner(id).subscribe((response) => {
           console.log(type, '12234');
           this.getBannerList(type);
+          this.toastr.success(response?.message);
         }),
           (err) => {};
       }

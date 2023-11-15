@@ -94,6 +94,9 @@ export class MobileAppTripsComponent implements OnInit {
       { courierId: i?.assigneeDetails?._id, id: i?._id },
     ]);
   }
+  // click() {
+  //   this.toastr.success("created successfully")
+  // }
 
   getallActiveDeliveryman() {
     this.apiService

@@ -61,8 +61,8 @@ box-shadow:none !important;
 border-radius: 5px;
 }
 .green{
-    background: #21aa47 !important;
-    border:1px solid #21aa47;
+    background: #ed1c24 !important;
+    border:1px solid #ed1c24;
 }
 
  .mat-raised-button, .mat-fab, .mat-mini-fab {
@@ -73,8 +73,8 @@ border-radius: 5px;
         display:block;
     }
     ::ng-deep .mat-form-field-label {
-    color: #21aa47 !important;
+    color: #000 !important;
 }
 ::ng-deep .mat-form-field-underline {
-    background: #21aa47 !important;
+    background: #000 !important;
 }

@@ -55,12 +55,12 @@ const MENUITEMS = [
     type: 'link',
     icon: 'dashboard',
   },
-  {
-    state: 'stamp_document',
-    name: 'Stamp Document',
-    type: 'link',
-    icon: 'local_post_office',
-  },
+  // {
+  //   state: 'stamp_document',
+  //   name: 'Stamp Document',
+  //   type: 'link',
+  //   icon: 'local_post_office',
+  // },
   // {
   //   state: 'b2b-customers',
   //   name: 'S2B Customers',
