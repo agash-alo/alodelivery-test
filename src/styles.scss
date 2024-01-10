@@ -10,7 +10,7 @@ body {
   font-family: "Quicksand", sans-serif !important;
   font-weight: 500 !important;
 }
-
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~ngx-toastr/toastr";
 

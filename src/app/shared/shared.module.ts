@@ -8,12 +8,14 @@ import {
   AccordionLinkDirective,
   AccordionDirective
 } from './accordion';
+import { DemoComponent } from './demo/demo.component';
 
 @NgModule({
   declarations: [
     AccordionAnchorDirective,
     AccordionLinkDirective,
-    AccordionDirective
+    AccordionDirective,
+    DemoComponent
   ],
   exports: [
     AccordionAnchorDirective,

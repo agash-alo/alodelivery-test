@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiServiceService } from '../service/api-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { ToastrService } from 'ngx-toastr';
+import { FormBuilder, Validators } from '@angular/forms';
+import { DialogueComponent } from '../dialogue/dialogue.component';
+import { EnterOtpComponent } from '../enter-otp/enter-otp.component';
 
 @Component({
   selector: 'app-setting',
@@ -12,14 +15,9 @@ import { ToastrService } from 'ngx-toastr';
 export class SettingComponent implements OnInit {
   banner_management = [
     { id: '1', imgUrl: '../../assets/images/custm-nbb/upload.png' },
-    // { id: '1', imgUrl: '../../assets/images/custm-nbb/upload.png' },
-    // { id: '1', imgUrl: '../../assets/images/custm-nbb/upload.png' },
+
   ];
-  Notary = [
-    // { id: '1', image: '../../assets/images/custm-nbb/settings-banner.png' },
-    // { id: '2', image: '../../assets/images/custm-nbb/settings-banner.png' },
-    // { id: '1', imgUrl: '../../assets/images/custm-nbb/upload.png' },
-  ];
+  Notary = [];
   fileuploadstatus: boolean | undefined;
   selectedfile: any;
   filebase: any;
@@ -29,8 +27,21 @@ export class SettingComponent implements OnInit {
   bannerNotaryList: any;
   advertiseList: any;
   searchLoad:boolean = false;
+
+
+
+  label: any;
+  btnTxt: any;
+  ImgForm: any;
+  submitted: any;
+  dummyImg: any;
+  Banlist=[
+    { id: 1, url: "ww.google.com", imgUrl:"../../assets/images/custm-nbb/upload.png"},
+    { id: 2, url: "ww.google.com", imgUrl:"../../assets/images/custm-nbb/upload.png" }
+  ];
+  selectedId:any;
   constructor(
-    private apiService: ApiServiceService,
+    private apiService: ApiServiceService,private formBuilder:FormBuilder,
     private dialog: MatDialog,private toastr:ToastrService
   ) {}
 
@@ -178,7 +189,7 @@ export class SettingComponent implements OnInit {
           }
           if (type == 'web') {
             this.bannerWebList = res?.data?.data ? res.data.data : [];
-            if (this.bannerWebList?.length >= 3) {
+            if (this.bannerWebList?.length >= 6) {
               this.webCheck = false;
             } else {
               this.webCheck = true;
@@ -235,4 +246,18 @@ export class SettingComponent implements OnInit {
       }
     });
   }
+
+  showPrompt(item?: any){
+    const dialogRef = this.dialog.open(EnterOtpComponent, {
+      width: '350px',
+      height: item ? '400px' : '500px',
+      disableClose: true,
+      data: item
+
+    })
+    dialogRef.afterClosed().subscribe(() => {
+      this.getBannerList('web')
+    });
+  }
+
 }

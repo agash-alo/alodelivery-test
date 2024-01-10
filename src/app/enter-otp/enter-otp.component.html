@@ -1,4 +1,5 @@
-<div class="login-register" style="background-image:url(assets/images/jcr_content.jpg);">
+
+ <!-- <div class="login-register" style="background-image:url(assets/images/jcr_content.jpg);">
     <div class="col-lg-4 col-md-5 col-sm-12 login_main_box">
         <div class="login-register">
             <mat-card class="m-t-10 w-100">
@@ -43,5 +44,43 @@
         </div>
 
     </div>
+
+</div> -->
+
+
+
+<div class="container"  >
+    <div class="text-center">
+        <h5> Add Banner</h5>
+        <!-- <p style="font-size: 14px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit?</p> -->
+    </div>
+    <form [formGroup]="ImgForm">
+        
+    <div class="form-group">
+        <label>Url</label>
+        <input type="text" class="form-control" formControlName="url"
+            [ngClass]="{ 'is-invalid': submitted && f['url'].errors }" aria-describedby="emailHelp" placeholder="Enter Url"
+            required>
+            <div style="color:red" *ngIf="submitted && ImgForm?.get('url')?.hasError('pattern')">
+                not a valid URL
+            </div>
+
+    </div>
+    <div class="form-group mt-2">
+        <label for="formFile" class="form-label">Upload</label>
+        <input class="form-control" type="file" id="formFile" formControlName="image" (change)="onSelectFile($event)">
+        <div class="mt-2 text-center p-2" style="border:1px solid black">
+            <img [src]="imagelist ? imagelist : '../../../../assets/images/custm-nbb/upload.png'" width="70px" height="50px">
+        </div>
+    </div>
+
+
+        <div class="text-center mt-3">
+            <button mat-raised-button *ngIf="update" class="save-btn me-3" (click)="edit(item)">Update</button>
+            <button mat-raised-button *ngIf="!update" class="save-btn me-3" (click)="create()">Create</button>
+            <button mat-raised-button class="cancel-btn" mat-dialog-close>Cancel</button>
+        </div>
+
+    </form>
 
 </div>

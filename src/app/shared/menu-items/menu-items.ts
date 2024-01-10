@@ -91,12 +91,18 @@ const MENUITEMS = [
     type: 'link',
     icon: 'settings',
   },
-  // {
-  //   state: 'add-subadmin',
-  //   name: 'Sub Admin',
-  //   type: 'link',
-  //   icon: 'person',
-  // },
+  {
+    state: 'feedback',
+    name: 'FeedBack',
+    type: 'link',
+    icon: 'feedback', 
+  },
+  {
+    state: 'add-subadmin',
+    name: 'Sub Admin',
+    type: 'link',
+    icon: 'person',
+  },
   // {
   //   state: 'demo-request',
   //   name: 'Demo Request',

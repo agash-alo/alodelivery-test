@@ -430,7 +430,7 @@ export class ApiServiceService {
         catchError(this.handleError('err', []))
       );
   }
-
+ 
   getListDemoReq(limit?: any, offset?: any, value?: any): Promise<any> {
     return new Promise((resolve, reject) => {
       let url = '';
@@ -727,6 +727,31 @@ export class ApiServiceService {
         reject(err);
       });
     });
+  }
+// feedBack
+  getListFeedback(limit?: any, offset?: any): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let url = '';
+      // if (value) {
+      //   url = `demo?limit=${limit}&offset=${offset}&value=${value}&demoStatus=new`;
+      // } else {
+        url = `feedBack?limit=${limit}&offset=${offset}`;
+      // }
+
+      this.auth
+        .guestAuthGetapi(url)
+        .then((resp: any) => {
+          resolve(resp);
+        })
+        .catch((err: any) => {
+          reject(err);
+        });
+    });
+  }
+
+  updateFeedBackList(userId: any, verified: any) {
+    let url = `feedBack/${userId}`;
+    return this.auth.putGuestAuthApiData(url, verified).pipe(map((res) => res));
   }
 
 }

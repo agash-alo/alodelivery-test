@@ -1,0 +1,131 @@
+<div fxLayout="row wrap">
+  <div fxFlex.gt-sm="100" fxFlex="100">
+    <div class="container-fluid ">
+      <div class="row ">
+        <div class="col-12">
+          <mat-card>
+            <mat-card-content class="payoutcard">
+              <h6 class="heading  mb-2"> FeedBack
+                <!-- <span class="badge badge-light violet">0</span> -->
+                <span matBadge="{{totalCount}}" matBadgeOverlap="false" class="demo-section active-badge"></span>
+              </h6>
+              <div class="row mt-4" *ngIf="feedback.length">
+                <div class="col-sm-6 col-md-6 col-lg-4 mb-3" *ngFor="let items of feedback;let i=index;">
+                  <div class="">
+                    <mat-card class="m-0">
+                      <mat-card-content class="customerscard p-0">
+                        <div class="row-wrap d-flex ">
+                          <div class="col-sm-6"></div>
+                          <div class="col-sm-6 ">
+                            <div class="">
+                              <div *ngIf="items?.feedBackStatus == 'true'">
+                                <div [ngClass]="{'green': items?.feedBackStatus == 'true'}">Open</div>
+                              </div>
+                              <div *ngIf="items?.feedBackStatus == 'false'">
+                                <div [ngClass]="{'red': items?.feedBackStatus == 'false'}"> Closed </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row p-3">
+                          <div class="col-5">
+                            <p class="heading">Name</p>
+                          </div>
+                          <div class="col-7">
+                            <p class="content">:
+                              {{items?.userInfo?.name}}</p>
+                          </div>
+                          <div class="col-5">
+                            <p class="heading">Mobile No </p>
+                          </div>
+                          <div class="col-7">
+                            <p class="content">: {{items?.userInfo?.mobileNo}}</p>
+                          </div>
+                          <div class="col-5">
+                            <p class="heading">Email </p>
+                          </div>
+                          <div class="col-7">
+                            <p class="content "[matTooltip]="items.userInfo?.email" >:
+                              {{items?.userInfo?.email}}</p>
+                          </div>
+                          <div class=" my-1 ">
+                            <div class="col-12">
+                              <div>
+                                <p> Comments : </p>
+                                <div class="description " [matTooltip]="items.feedBack">
+                                  {{items?.feedBack }}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="text-center mt-2">
+                            <button mat-raised-button color="primary" class="verifybtn"
+                              [disabled]="items?.feedBackStatus =='false'" (click)="updateStatus(items)">
+                              Update
+                            </button>
+                          </div>
+                        </div>
+
+
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <mat-paginator (page)="pageChange($event)" [pageSize]="limit" aria-label="Select page" [length]="totalCount"
+                    [pageIndex]="currentPage">
+                  </mat-paginator>
+                </div>
+              </div>
+              <div *ngIf="!feedback.length">
+                <div class="empty">
+                  No Data Found
+                </div>
+              </div>
+            </mat-card-content>
+            
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <mat-card class="m-0">
+  <mat-card-content class="innercard p-3">
+
+
+    <div class="row my-1 ">
+      <div class="col-12">
+        <div>
+          <p> Name : {{items?.name}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row my-1 ">
+      <div class="col-12 ">
+        <div>
+          <p> Email : {{items?.email }}</p>
+        </div>
+
+      </div>
+      <div class="col-12">
+        <div>
+          <p> Mobile Number : {{items?.mobile }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row my-1 ">
+      <div class="col-12">
+        <div>
+          <p> Comments : </p>
+          <div class="description " [matTooltip]="items.comments">
+            {{items?.comments }}
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+  </mat-card-content>
+</mat-card> -->

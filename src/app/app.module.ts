@@ -85,6 +85,7 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { AddRestaurantComponent } from './add-restaurant/add-restaurant.component';
 import { FoodPopupComponent } from './food-popup/food-popup.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -141,6 +142,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     RestaurantComponent,
     AddRestaurantComponent,
     FoodPopupComponent,
+    FeedbackComponent,
   ],
   imports: [
 

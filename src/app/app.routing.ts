@@ -33,6 +33,7 @@ import { MapComponent } from './map/map.component';
 import { FoodComponent } from './food/food.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { AddRestaurantComponent } from './add-restaurant/add-restaurant.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 export const AppRoutes: Routes = [
   {
@@ -268,6 +269,15 @@ export const AppRoutes: Routes = [
         data: {
           title: 'Food',
           urls: [{ title: 'Food', url: '/   ' }],
+        },
+      },
+      {
+        path: 'feedback',
+        component: FeedbackComponent,
+
+        data: {
+          title: 'Feedback',
+          urls: [{ title: 'Feedback', url: '/   ' }],
         },
       },
 

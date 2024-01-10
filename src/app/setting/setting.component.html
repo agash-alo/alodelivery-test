@@ -28,9 +28,9 @@
           </div>
         </div>
       </div> -->
-<div class="overlay" *ngIf="searchLoad">
-  <div class="spinner"> Loading......!!!</div>
-</div>
+    <div class="overlay" *ngIf="searchLoad">
+      <div class="spinner"> Loading......!!!</div>
+    </div>
 
     <mat-card *ngIf="!searchLoad">
       <mat-card-content>
@@ -39,7 +39,7 @@
             <div class="container">
               <div class="row">
                 <mat-card-title class="p-2">
-                  <h6 class="heading">consumer dashboard</h6>
+                  <h6 class="heading">Consumer Top Slider</h6>
                 </mat-card-title>
                 <div class="col-lg-4 col-md-4 col-sm-12" *ngFor="let items of bannerConsumerList; let i= index;">
 
@@ -48,12 +48,12 @@
 
                       <div class="shadow" style="height:300px !important">
                         <div class=" text-center p-2">
-                          <img src="{{items.imageUrl}}" class=" img-fluid"style="width:100% ;height: 207px !important;"
+                          <img src="{{items.imageUrl}}" class=" img-fluid" style="width:100% ;height: 207px !important;"
                             alt="img">
                         </div>
-                        
+
                         <div class=" text-end p-1">
-                          
+
                           <button class="file-upload-button1">
                             <input type="file" #fileInput
                               (change)="onChange($event?.target?.files,'mobile',items?._id)" />
@@ -63,7 +63,7 @@
                           <button mat-fab color="danger" (click)="deleteBanner(i,bannerConsumerList,'mobile')">
                             <mat-icon>delete</mat-icon>
                           </button>
-                          
+
                         </div>
                       </div>
 
@@ -89,16 +89,15 @@
               </div>
               <div class="row">
                 <mat-card-title class="p-2">
-                  <h6 class="heading">web dashboard</h6>
+                  <h6 class="heading">Consumer Down Slider</h6>
                 </mat-card-title>
-                <div class="col-lg-4 col-md-4 col-sm-12" *ngFor="let items of bannerWebList; let i= index;">
-
+                <!-- <div class="col-lg-4 col-md-4 col-sm-12" *ngFor="let items of bannerWebList; let i= index;">
                   <div class=" card-settings mb-3">
                     <div class="col-sm-12">
 
                       <div class="shadow">
                         <div class=" text-center p-2">
-                          <img src="{{items.imageUrl}}" class=" img-fluid"style="width:100% ;height: 207px !important;"
+                          <img src="{{items.imageUrl}}" class=" img-fluid" style="width:100% ;height: 207px !important;"
                             alt="img">
                         </div>
                         <div class=" text-end p-1">
@@ -131,9 +130,33 @@
 
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
-              <div class="row">
+              <!-- <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                  <div class=" card-settings mb-3">
+                    <div class="col-sm-12">
+                      <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+
+
+                      <div class="file-upload">
+                        {{fileName || "No file uploaded yet."}}
+                        <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+                          <mat-icon>attach_file</mat-icon>
+                        </button>
+                      </div>
+                      <div class="progress">
+                        <mat-progress-bar class="progress-bar" mode="determinate" [value]="uploadProgress"
+                          *ngIf="uploadProgress">
+                        </mat-progress-bar>
+                        <mat-icon class="cancel-upload" (click)="cancelUpload()"
+                          *ngIf="uploadProgress">delete_forever</mat-icon>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              <!-- <div class="row">
                 <mat-card-title class="p-2">
                   <h6 class="heading">Notary dashboard</h6>
                 </mat-card-title>
@@ -177,13 +200,83 @@
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </div> -->
 
+  <div class="row  p-2 " style="background-color: #F4F4F4;align-items: baseline;">
+    <!-- <div class=""> -->
+    <div class=" col-lg-8 col-md-8 col-4 new-one">
+  
+    </div>
+    <div class="col-lg-4 col-md-4 col-8 text-end" (click)="showPrompt()">
+      <i class="fa fa-plus-circle me-2" aria-hidden="true"></i><span class="add-txt">Add Image
+      </span>
+    </div>
+  
+  
+  </div>
+  <!-- </div> -->
+  
+  <div class="card-table">
+  
+  
+    <table class="table table-striped mb-5 mt-3" style="width:100% !important">
+      <thead>
+        <tr>
+          <th>Sl.NO</th>
+          <th>Image</th>
+          <th> Redirect Url</th>
+          <th>Action</th>
+  
+        </tr>
+      </thead>
+      <tbody>
+  
+        <tr *ngFor="let item of bannerWebList; let i= index;">
+  
+          <td>
+            {{i+1}}
+          </td>
+          <td class="checkname ">
+            <!-- <p class="ellip" data-toggle="tooltip" title={{item?.email}}> {{item?.imageUrl}}</p> -->
+  <img *ngIf="items?.imageUrl?.length; else dummyImage"class="img-fluid" [src]="item?.imageUrl " alt=""style="width:100px">
+          
+<ng-template #dummyImage>
+  <img class="img-fluid" src="/assets/images/custm-nbb/upload.png" alt=""width="70px" height="50px">
+</ng-template></td>
+          <td class="checkname ">
+            <p> {{item?.redirectUrl}} </p>
+  
+          </td>
+  
+  
+          <td class="">
+            <div class=" d-flex justify-content-center te1">
+  
+              <i class="fa fa-edit address_edit me-2" (click)="showPrompt(item)" style="color:#21aa47"
+                aria-hidden="true"></i>
+              <i (click)="deleteBanner(i,bannerWebList,'web')" class="fa fa-trash trash_icon" aria-hidden="true"></i>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+      <!-- <mat-paginator (page)="pageChange($event)" [pageSize]="limit" aria-label="Select page"
+                    [length]="totalCount" [pageIndex]="currentPage">
+                  </mat-paginator> -->
+    </div>
+  </div>
+
+
+
+
+
+
+
+            </div>
           </mat-tab>
           <mat-tab label="Advertisement">
             <div class="container">
-
               <div class="row">
                 <mat-card-title class="p-2">
                   <h6 class="heading">Advertisement</h6>
@@ -232,15 +325,14 @@
                 </div>
               </div>
             </div>
-
-              <!-- <div class="text-center">
-                <h6><b>No Data Found</b></h6>
-              </div> -->
           </mat-tab>
         </mat-tab-group>
       </mat-card-content>
+
+     
+
+
     </mat-card>
-
-
   </div>
 </div>
+
